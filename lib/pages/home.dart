@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:teachme/blocs/bottom_navbar_bloc/bottom_navbar_event.dart';
-import 'package:teachme/blocs/bottom_navbar_bloc/bottom_navbar_state.dart';
 import 'package:teachme/data/fake_data.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
-
-import '../blocs/bottom_navbar_bloc/bottom_navbar_bloc.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,29 +10,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final Box _boxLogin = Hive.box("login");
-  late BottomNavBloc _bottomNavBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _bottomNavBloc = BottomNavBloc();
-  }
-
-  @override
-  void dispose() {
-    _bottomNavBloc.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
     return BlocProvider(
-      create: (context) => _bottomNavBloc,
-      child: BlocBuilder<BottomNavBloc, BottomNavState>(
-        builder: (context, state) {
-          final int _currentIndex = (state as BottomNavTab).tabIndex;
+      create: (context) => TabCubit(),
+      child: BlocBuilder<TabCubit, int>(
+        builder: (context, currentIndex) {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: const Color(0xFF1A434E),
@@ -67,7 +48,7 @@ class _HomeState extends State<Home> {
             body: ListView(
               children: List.generate(FakeDate.data.length, (index) {
                 var data = FakeDate.data[index];
-                return _studiyItem(data: data, size: size);
+                return _studyItem(data: data, size: size);
               }),
             ),
             bottomNavigationBar: Container(
@@ -77,7 +58,7 @@ class _HomeState extends State<Home> {
                 children: [
                   CustomPaint(
                     size: Size(size.width, 80),
-                    painter: BNBCustomePainter(),
+                    painter: BNBCustomPainter(),
                   ),
                   Center(
                     heightFactor: 0.6,
@@ -96,38 +77,38 @@ class _HomeState extends State<Home> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            _bottomNavBloc.add(BottomNavTabChanged(0));
+                            context.read<TabCubit>().changeTabIndex(0);
                           },
                           icon: const Icon(Icons.home),
                           color:
-                              _currentIndex == 0 ? Colors.amber : Colors.black,
+                          currentIndex == 0 ? Colors.amber : Colors.black,
                         ),
                         IconButton(
                           onPressed: () {
-                            _bottomNavBloc.add(BottomNavTabChanged(1));
+                            context.read<TabCubit>().changeTabIndex(1);
                           },
                           icon: const Icon(Icons.add_chart_outlined),
                           color:
-                              _currentIndex == 1 ? Colors.amber : Colors.black,
+                          currentIndex == 1 ? Colors.amber : Colors.black,
                         ),
                         Container(
                           width: size.width * .20,
                         ),
                         IconButton(
                           onPressed: () {
-                            _bottomNavBloc.add(BottomNavTabChanged(2));
+                            context.read<TabCubit>().changeTabIndex(2);
                           },
                           icon: const Icon(Icons.favorite_border_rounded),
                           color:
-                              _currentIndex == 2 ? Colors.amber : Colors.black,
+                          currentIndex == 2 ? Colors.amber : Colors.black,
                         ),
                         IconButton(
                           onPressed: () {
-                            _bottomNavBloc.add(BottomNavTabChanged(3));
+                            context.read<TabCubit>().changeTabIndex(3);
                           },
                           icon: const Icon(Icons.search_outlined),
                           color:
-                              _currentIndex == 3 ? Colors.amber : Colors.black,
+                          currentIndex == 3 ? Colors.amber : Colors.black,
                         ),
                       ],
                     ),
@@ -141,7 +122,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _studiyItem({required data, required Size size}) {
+  Widget _studyItem({required data, required Size size}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
@@ -185,7 +166,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-class BNBCustomePainter extends CustomPainter {
+class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
