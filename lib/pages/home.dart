@@ -65,8 +65,11 @@ class _HomeState extends State<Home> {
                   Center(
                     heightFactor: 0.6,
                     child: FloatingActionButton(
-                      onPressed: () {},
-                      backgroundColor: Colors.orange,
+                      onPressed: () {
+                        context.read<TabCubit>().changeTabIndex(4);
+                      },
+                      backgroundColor:
+                          currentIndex == 4 ? Colors.orange : Colors.white,
                       elevation: 0.1,
                       child: const Icon(Icons.person),
                     ),
@@ -83,7 +86,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.home),
                           color:
-                              currentIndex == 0 ? Colors.amber : Colors.black,
+                              currentIndex == 0 ? Colors.orange : Colors.black,
                         ),
                         IconButton(
                           onPressed: () {
@@ -91,7 +94,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.add_chart_outlined),
                           color:
-                              currentIndex == 1 ? Colors.amber : Colors.black,
+                              currentIndex == 1 ? Colors.orange : Colors.black,
                         ),
                         Container(
                           width: size.width * .20,
@@ -102,7 +105,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.favorite_border_rounded),
                           color:
-                              currentIndex == 2 ? Colors.amber : Colors.black,
+                              currentIndex == 2 ? Colors.orange : Colors.black,
                         ),
                         IconButton(
                           onPressed: () {
@@ -110,7 +113,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.search_outlined),
                           color:
-                              currentIndex == 3 ? Colors.amber : Colors.black,
+                              currentIndex == 3 ? Colors.orange : Colors.black,
                         ),
                       ],
                     ),
