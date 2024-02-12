@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:teachme/blocs/bottom_nav_cubit.dart';
 import 'package:teachme/data/fake_data.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
 
@@ -81,7 +83,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.home),
                           color:
-                          currentIndex == 0 ? Colors.amber : Colors.black,
+                              currentIndex == 0 ? Colors.amber : Colors.black,
                         ),
                         IconButton(
                           onPressed: () {
@@ -89,7 +91,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.add_chart_outlined),
                           color:
-                          currentIndex == 1 ? Colors.amber : Colors.black,
+                              currentIndex == 1 ? Colors.amber : Colors.black,
                         ),
                         Container(
                           width: size.width * .20,
@@ -100,7 +102,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.favorite_border_rounded),
                           color:
-                          currentIndex == 2 ? Colors.amber : Colors.black,
+                              currentIndex == 2 ? Colors.amber : Colors.black,
                         ),
                         IconButton(
                           onPressed: () {
@@ -108,7 +110,7 @@ class _HomeState extends State<Home> {
                           },
                           icon: const Icon(Icons.search_outlined),
                           color:
-                          currentIndex == 3 ? Colors.amber : Colors.black,
+                              currentIndex == 3 ? Colors.amber : Colors.black,
                         ),
                       ],
                     ),
