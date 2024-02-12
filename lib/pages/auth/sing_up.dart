@@ -18,7 +18,7 @@ class _SignupState extends State<Signup> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerConFirmPassword =
-  TextEditingController();
+      TextEditingController();
 
   final Box _boxAccounts = Hive.box("accounts");
   bool _obscurePassword = true;
@@ -26,7 +26,7 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: const Color(0xFF1A434E),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -36,12 +36,18 @@ class _SignupState extends State<Signup> {
               const SizedBox(height: 100),
               Text(
                 "Register",
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineLarge
+                    ?.copyWith(color: Colors.white),
               ),
               const SizedBox(height: 10),
               Text(
                 "Create your account",
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: Colors.white),
               ),
               const SizedBox(height: 35),
               TextFormField(
@@ -49,21 +55,23 @@ class _SignupState extends State<Signup> {
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   labelText: "Username",
-                  prefixIcon: const Icon(Icons.person_outline),
+                  prefixIcon:
+                      const Icon(Icons.person_outline, color: Colors.white),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  labelStyle: TextStyle(color: Colors.white),
                 ),
+                style: TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter username.";
                   } else if (_boxAccounts.containsKey(value)) {
                     return "Username is already registered.";
                   }
-
                   return null;
                 },
                 onEditingComplete: () => _focusNodeEmail.requestFocus(),
@@ -75,14 +83,16 @@ class _SignupState extends State<Signup> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: "Phone Number",
-                  prefixIcon: const Icon(Icons.phone),
+                  prefixIcon: const Icon(Icons.phone, color: Colors.white),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  labelStyle: TextStyle(color: Colors.white),
                 ),
+                style: TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter phone number.";
@@ -101,7 +111,8 @@ class _SignupState extends State<Signup> {
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
                   labelText: "Password",
-                  prefixIcon: const Icon(Icons.password_outlined),
+                  prefixIcon:
+                      const Icon(Icons.password_outlined, color: Colors.white),
                   suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -109,15 +120,19 @@ class _SignupState extends State<Signup> {
                         });
                       },
                       icon: _obscurePassword
-                          ? const Icon(Icons.visibility_outlined)
-                          : const Icon(Icons.visibility_off_outlined)),
+                          ? const Icon(Icons.visibility_outlined,
+                              color: Colors.white)
+                          : const Icon(Icons.visibility_off_outlined,
+                              color: Colors.white)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  labelStyle: TextStyle(color: Colors.white),
                 ),
+                style: TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter password.";
@@ -137,7 +152,8 @@ class _SignupState extends State<Signup> {
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
                   labelText: "Confirm Password",
-                  prefixIcon: const Icon(Icons.password_outlined),
+                  prefixIcon:
+                      const Icon(Icons.password_outlined, color: Colors.white),
                   suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -145,15 +161,19 @@ class _SignupState extends State<Signup> {
                         });
                       },
                       icon: _obscurePassword
-                          ? const Icon(Icons.visibility_outlined)
-                          : const Icon(Icons.visibility_off_outlined)),
+                          ? const Icon(Icons.visibility_outlined,
+                              color: Colors.white)
+                          : const Icon(Icons.visibility_off_outlined,
+                              color: Colors.white)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  labelStyle: TextStyle(color: Colors.white),
                 ),
+                style: TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter password.";
@@ -168,6 +188,7 @@ class _SignupState extends State<Signup> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal,
                       minimumSize: const Size.fromHeight(50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -184,12 +205,13 @@ class _SignupState extends State<Signup> {
                           SnackBar(
                             width: 200,
                             backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
+                                Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             behavior: SnackBarBehavior.floating,
-                            content: const Text("Registered Successfully"),
+                            content: const Text("Registered Successfully",
+                                style: TextStyle(color: Colors.white)),
                           ),
                         );
 
@@ -198,15 +220,18 @@ class _SignupState extends State<Signup> {
                         Navigator.pop(context);
                       }
                     },
-                    child: const Text("Register"),
+                    child: const Text("Register",
+                        style: TextStyle(color: Colors.white)),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already have an account?"),
+                      const Text("Already have an account?",
+                          style: TextStyle(color: Colors.white)),
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text("Login"),
+                        child: const Text("Login",
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),

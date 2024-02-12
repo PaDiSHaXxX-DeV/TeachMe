@@ -10,7 +10,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-
   Widget build(BuildContext context) {
     final Box _boxLogin = Hive.box("login");
 
@@ -18,7 +17,9 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF1A434E),
         leading: IconButton(
+          color: Colors.white,
           onPressed: () {
             _boxLogin.clear();
             _boxLogin.put("loginStatus", false);
@@ -33,12 +34,22 @@ class _HomeState extends State<Home> {
           },
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
-        title: const Text("Home Page"),
+        title: const Text(
+          "Home Page",
+          style: TextStyle(color: Colors.white),
+        ),
         elevation: 0,
       ),
       backgroundColor: const Color(0xFF1A434E),
       body: Stack(
         children: [
+          Positioned(
+              child: ListView(
+            children: List.generate(FakeDate.data.length, (index) {
+              var data = FakeDate.data[index];
+              return _studiyItem(data: data, size: size);
+            }),
+          )),
           Positioned(
             bottom: 0,
             left: 0,
@@ -56,8 +67,8 @@ class _HomeState extends State<Home> {
                     child: FloatingActionButton(
                       onPressed: () {},
                       backgroundColor: Colors.orange,
-                      child: const Icon(Icons.person),
                       elevation: 0.1,
+                      child: const Icon(Icons.person),
                     ),
                   ),
                   Container(
@@ -70,15 +81,16 @@ class _HomeState extends State<Home> {
                             onPressed: () {}, icon: const Icon(Icons.home)),
                         IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.favorite_border_rounded)),
+                            icon: const Icon(Icons.add_chart_outlined)),
                         Container(
                           width: size.width * .20,
                         ),
                         IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.bookmark)),
+                            onPressed: () {},
+                            icon: const Icon(Icons.favorite_border_rounded)),
                         IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.notifications)),
+                            icon: const Icon(Icons.search_outlined)),
                       ],
                     ),
                   )
@@ -86,26 +98,19 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          Positioned(
-              child: ListView(
-            children: List.generate(FakeDate.data.length, (index) {
-              var data = FakeDate.data[index];
-              return _studiyItem(data: data);
-            }),
-          )),
         ],
       ),
     );
   }
 
-  Widget _studiyItem({required data}) {
+  Widget _studiyItem({required data, required Size size}) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
         children: [
           Container(
-            height: 70,
-            width: 70,
+            height: size.height * 0.19,
+            width: size.width * 0.19,
             decoration: const BoxDecoration(
                 color: Colors.deepOrange, shape: BoxShape.circle),
             child: ClipRRect(
@@ -125,17 +130,14 @@ class _HomeState extends State<Home> {
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
-              Text(
-                data.location,
-                style: const TextStyle(color: Colors.white),
-              ),
-              Text(
-                data.major,
-                style: const TextStyle(color: Colors.white),
-              ),
-              Text(
-                data.number,
-                style: const TextStyle(color: Colors.white),
+              SizedBox(
+                width: size.width * 0.54,
+                child: Text(
+                  data.description,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
