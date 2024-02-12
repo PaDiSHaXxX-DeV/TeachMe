@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:teachme/pages/auth/sing_up.dart';
 import 'package:teachme/pages/home.dart';
+import 'package:teachme/pages/tab/tab_box.dart';
 
 class Login extends StatefulWidget {
   const Login({
@@ -26,7 +27,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     if (_boxLogin.get("loginStatus") ?? false) {
-      return Home();
+      return HomePage();
     }
 
     return Scaffold(
@@ -159,7 +160,7 @@ class _LoginState extends State<Login> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return Home();
+                              return TabBox();
                             },
                           ),
                         );

@@ -211,7 +211,7 @@ class _SignupState extends State<Signup> {
                             ),
                             behavior: SnackBarBehavior.floating,
                             content: const Text("Registered Successfully",
-                                style: TextStyle(color: Colors.white)),
+                                style: TextStyle(color: Colors.orange)),
                           ),
                         );
 
