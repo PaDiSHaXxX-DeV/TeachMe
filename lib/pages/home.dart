@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:teachme/blocs/bottom_navbar_bloc/bottom_navbar_event.dart';
+import 'package:teachme/blocs/bottom_navbar_bloc/bottom_navbar_state.dart';
 import 'package:teachme/data/fake_data.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
+
+import '../blocs/bottom_navbar_bloc/bottom_navbar_bloc.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,51 +14,63 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final Box _boxLogin = Hive.box("login");
+  late BottomNavBloc _bottomNavBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _bottomNavBloc = BottomNavBloc();
+  }
+
+  @override
+  void dispose() {
+    _bottomNavBloc.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Box _boxLogin = Hive.box("login");
-
     final Size size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1A434E),
-        leading: IconButton(
-          color: Colors.white,
-          onPressed: () {
-            _boxLogin.clear();
-            _boxLogin.put("loginStatus", false);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const Login();
+    return BlocProvider(
+      create: (context) => _bottomNavBloc,
+      child: BlocBuilder<BottomNavBloc, BottomNavState>(
+        builder: (context, state) {
+          final int _currentIndex = (state as BottomNavTab).tabIndex;
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: const Color(0xFF1A434E),
+              leading: IconButton(
+                color: Colors.white,
+                onPressed: () {
+                  _boxLogin.clear();
+                  _boxLogin.put("loginStatus", false);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const Login();
+                      },
+                    ),
+                  );
                 },
+                icon: const Icon(Icons.arrow_back_ios_new_outlined),
               ),
-            );
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        title: const Text(
-          "Home Page",
-          style: TextStyle(color: Colors.white),
-        ),
-        elevation: 0,
-      ),
-      backgroundColor: const Color(0xFF1A434E),
-      body: Stack(
-        children: [
-          Positioned(
-              child: ListView(
-            children: List.generate(FakeDate.data.length, (index) {
-              var data = FakeDate.data[index];
-              return _studiyItem(data: data, size: size);
-            }),
-          )),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: Container(
+              title: const Text(
+                "Home Page",
+                style: TextStyle(color: Colors.white),
+              ),
+              elevation: 0,
+            ),
+            backgroundColor: const Color(0xFF1A434E),
+            body: ListView(
+              children: List.generate(FakeDate.data.length, (index) {
+                var data = FakeDate.data[index];
+                return _studiyItem(data: data, size: size);
+              }),
+            ),
+            bottomNavigationBar: Container(
               width: size.width,
               height: 80,
               child: Stack(
@@ -78,27 +95,48 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.home)),
+                          onPressed: () {
+                            _bottomNavBloc.add(BottomNavTabChanged(0));
+                          },
+                          icon: const Icon(Icons.home),
+                          color:
+                              _currentIndex == 0 ? Colors.amber : Colors.black,
+                        ),
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.add_chart_outlined)),
+                          onPressed: () {
+                            _bottomNavBloc.add(BottomNavTabChanged(1));
+                          },
+                          icon: const Icon(Icons.add_chart_outlined),
+                          color:
+                              _currentIndex == 1 ? Colors.amber : Colors.black,
+                        ),
                         Container(
                           width: size.width * .20,
                         ),
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.favorite_border_rounded)),
+                          onPressed: () {
+                            _bottomNavBloc.add(BottomNavTabChanged(2));
+                          },
+                          icon: const Icon(Icons.favorite_border_rounded),
+                          color:
+                              _currentIndex == 2 ? Colors.amber : Colors.black,
+                        ),
                         IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.search_outlined)),
+                          onPressed: () {
+                            _bottomNavBloc.add(BottomNavTabChanged(3));
+                          },
+                          icon: const Icon(Icons.search_outlined),
+                          color:
+                              _currentIndex == 3 ? Colors.amber : Colors.black,
+                        ),
                       ],
                     ),
                   )
                 ],
               ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
