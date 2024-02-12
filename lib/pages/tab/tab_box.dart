@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teachme/blocs/bottom_nav_cubit.dart';
+import 'package:teachme/blocs/bottom_nav_cubit/bottom_nav_cubit.dart';
 import 'package:teachme/pages/favorite.dart';
 import 'package:teachme/pages/home.dart';
 import 'package:teachme/pages/news_page.dart';
@@ -22,9 +22,11 @@ class _TabBoxState extends State<TabBox> {
     screens = [
       HomePage(),
       const NewsPage(),
+      const FavoritePage(),
+
       const SearchPage(),
       const StudentPage(),
-      const FavoritePage(),
+
     ];
 
     super.initState();

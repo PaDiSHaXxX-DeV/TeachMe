@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:teachme/blocs/bottom_nav_cubit.dart';
+import 'package:teachme/blocs/bottom_nav_cubit/bottom_nav_cubit.dart';
 import 'package:teachme/data/fake_data.dart';
+import 'package:teachme/data/models/study_model.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,8 +50,12 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: const Color(0xFF1A434E),
             body: ListView(
               children: List.generate(FakeDate.data.length, (index) {
-                var data = FakeDate.data[index];
-                return _studyItem(data: data, size: size);
+                StudyModel data = FakeDate.data[index];
+                return InkWell(
+                    onTap: () {
+                      //Info pagega otish
+                    },
+                    child: _studyItem(data: data, size: size));
               }),
             ),
           );
@@ -97,9 +102,14 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          InkWell(
+            onTap: () {},
+            child: SizedBox(
+              child: Icon(Icons.favorite_border_rounded),
+            ),
+          ),
         ],
       ),
     );
   }
 }
-
