@@ -87,7 +87,7 @@ class _SignupState extends State<Signup> {
                   if (value == null || value.isEmpty) {
                     return "Please enter phone number.";
                   } else if (!(value.contains('+') && value.contains('99'))) {
-                    return "Invalid email";
+                    return "Invalid phone number!";
                   }
                   return null;
                 },
