@@ -1,3 +1,7 @@
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'study_model.g.dart';
+
 class StudyModel {
   final String image;
   final String fullName;

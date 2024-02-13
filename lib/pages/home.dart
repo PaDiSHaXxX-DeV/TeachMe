@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:teachme/blocs/favorite_bloc/favorite_bloc.dart';
 import 'package:teachme/data/fake_data.dart';
+import 'package:teachme/data/models/form_status.dart';
 import 'package:teachme/data/models/study_model.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
 import 'package:teachme/pages/info_page.dart';
@@ -95,24 +98,52 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          InkWell(
-            onTap: () {
-              data.isFavorite = !data.isFavorite;
-              setState(() {
-                print(data.isFavorite.toString());
-              });
+          BlocBuilder<FavoriteBloc, FavoriteState>(
+            builder: (context, state) {
+              if (state.status == FormStatus.success) {
+                return InkWell(
+                  onTap: () {
+
+                    if (state.studys.contains(data)) {
+                      context
+                          .read<FavoriteBloc>()
+                          .add(DeleteFavoriteEvent(favoriteModel: data));
+                    } else {
+                      context
+                          .read<FavoriteBloc>()
+                          .add(AddFavoriteEvent(study: data));
+                    }
+                  },
+                  child: SizedBox(
+                    child: Icon(
+                      state.studys.contains(data)
+                          ? Icons.favorite_border_rounded
+                          : Icons.favorite,
+                      color:
+                          state.studys.contains(data) ? Colors.white : Colors.red,
+                    ),
+                  ),
+                );
+              } else {
+                return InkWell(
+                  onTap: () {},
+                  child: const SizedBox(
+                    child: Icon(Icons.favorite_border_rounded,
+                        color: Colors.black),
+                  ),
+                );
+              }
             },
-            child: SizedBox(
-              child: Icon(
-                data.isFavorite
-                    ? Icons.favorite_border_rounded
-                    : Icons.favorite,
-                color: data.isFavorite ? Colors.white : Colors.red,
-              ),
-            ),
-          ),
+          )
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    context.read<FavoriteBloc>().add(GetAllFavoritesEvent());
+
+    super.initState();
   }
 }
