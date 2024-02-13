@@ -5,6 +5,7 @@ import 'package:teachme/blocs/bottom_nav_cubit/bottom_nav_cubit.dart';
 import 'package:teachme/data/fake_data.dart';
 import 'package:teachme/data/models/study_model.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
+import 'package:teachme/pages/info_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -53,6 +54,10 @@ class _HomePageState extends State<HomePage> {
                 StudyModel data = FakeDate.data[index];
                 return InkWell(
                     onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => InfoPage(date: data)));
                       //Info pagega otish
                     },
                     child: _studyItem(data: data, size: size));
@@ -68,18 +73,17 @@ class _HomePageState extends State<HomePage> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            height: size.height * 0.19,
+          SizedBox(
+            height: size.height * 0.12,
             width: size.width * 0.19,
-            decoration: const BoxDecoration(
-                color: Colors.deepOrange, shape: BoxShape.circle),
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(data.image)),
-          ),
-          const SizedBox(
-            width: 30,
+                borderRadius: BorderRadius.circular(1),
+                child: Image.network(
+                  data.image,
+                  fit: BoxFit.cover,
+                )),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +108,7 @@ class _HomePageState extends State<HomePage> {
           ),
           InkWell(
             onTap: () {},
-            child: SizedBox(
+            child: const SizedBox(
               child: Icon(Icons.favorite_border_rounded),
             ),
           ),
