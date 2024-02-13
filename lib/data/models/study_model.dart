@@ -6,15 +6,18 @@ class StudyModel {
   final String major;
   final String rating;
   final String number;
+   bool isFavorite=false;
+
 
   StudyModel(
       {required this.image,
       required this.fullName,
+        required this.isFavorite,
       required this.description,
       required this.location,
       required this.major,
       required this.rating,
-      required this.number});
+      required this.number, });
 
   StudyModel copyWith({
 
@@ -25,6 +28,7 @@ class StudyModel {
     String? rating,
     String? type,
     String? number,
+    bool ? isFavorite,
   }) =>
       StudyModel(
         image: image ?? this.image,
@@ -34,6 +38,7 @@ class StudyModel {
         major: price ?? this.major,
         rating: rating ?? this.rating,
         number: number ?? this.number,
+        isFavorite: isFavorite ?? this.isFavorite,
       );
 
   factory StudyModel.fromJson(Map<String, dynamic> json) => StudyModel(
@@ -44,6 +49,7 @@ class StudyModel {
         major: json['major'] as String? ?? '',
         rating: json['rating'] as String? ?? '',
         number: json['number'] as String? ?? '',
+    isFavorite: json['isFavorite'] as bool? ?? false,
       );
 
   @override
@@ -65,5 +71,6 @@ class StudyModel {
         'major': major,
         'rating': rating,
         'number': number,
+        'isFavorite': isFavorite,
       };
 }
