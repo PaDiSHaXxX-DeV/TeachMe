@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teachme/data/models/user/user_data.dart';
 import 'package:teachme/pages/profile/widgets/appbar_widget.dart';
+import 'package:teachme/widgets/Global_button.dart';
 
 // This class handles the Page to edit the About Me Section of the User Profile.
 class EditDescriptionFormPage extends StatefulWidget {
@@ -62,7 +63,7 @@ class _EditDescriptionFormPageState extends State<EditDescriptionFormPage> {
                           controller: descriptionController,
                           textAlignVertical: TextAlignVertical.top,
                           decoration: const InputDecoration(
-                            hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: TextStyle(color: Colors.white),
                               labelStyle: TextStyle(color: Colors.white),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
@@ -87,28 +88,19 @@ class _EditDescriptionFormPageState extends State<EditDescriptionFormPage> {
                     padding: const EdgeInsets.only(top: 50),
                     child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: SizedBox(
-                          width: 350,
-                          height: 50,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shadowColor: const Color(0xFF1A434E),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                backgroundColor: Colors.orange),
-                            onPressed: () {
-                              // Validate returns true if the form is valid, or false otherwise.
+                        child: GlobalButton(
+                            width: 350,
+                            height: 50,
+                            buttonTitle: 'Update',
+                            onTap: () {
                               if (_formKey.currentState!.validate()) {
                                 updateUserValue(descriptionController.text);
                                 Navigator.pop(context);
                               }
-                            },
-                            child: const Text(
-                              'Update',
-                              style: TextStyle(fontSize: 15, color: Colors.white),
-                            ),
-                          ),
-                        )))
+                            }))),
               ]),
         ));
   }
 }
+
+

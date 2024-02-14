@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:teachme/data/models/user/user_data.dart';
 import 'package:teachme/pages/profile/widgets/appbar_widget.dart';
+import 'package:teachme/widgets/Global_button.dart';
 
 class EditImagePage extends StatefulWidget {
   const EditImagePage({Key? key}) : super(key: key);
@@ -64,21 +65,7 @@ class _EditImagePageState extends State<EditImagePage> {
               padding: const EdgeInsets.only(top: 40),
               child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    width: 330,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shadowColor: const Color(0xFF1A434E),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                          backgroundColor: Colors.orange),
-                      onPressed: () {},
-                      child: const Text(
-                        'Update',
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                    ),
-                  )))
+                  child:GlobalButton(onTap: (){}, width: 330, height: 50, buttonTitle: 'Update') ))
         ],
       ),
     );

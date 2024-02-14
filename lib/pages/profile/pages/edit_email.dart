@@ -1,7 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:teachme/data/models/user/user_data.dart';
+import 'package:teachme/pages/profile/pages/edit_description.dart';
 import 'package:teachme/pages/profile/widgets/appbar_widget.dart';
+import 'package:teachme/widgets/Global_button.dart';
 
 // This class handles the Page to edit the Email Section of the User Profile.
 class EditEmailFormPage extends StatefulWidget {
@@ -32,7 +34,6 @@ class EditEmailFormPageState extends State<EditEmailFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFF1A434E),
-
         appBar: buildAppBar(context),
         body: Form(
           key: _formKey,
@@ -42,13 +43,12 @@ class EditEmailFormPageState extends State<EditEmailFormPage> {
               children: <Widget>[
                 SizedBox(
                     width: 320,
-                    child:  Text(
+                    child: Text(
                       "What's your email?",
-                      style:
-                          TextStyle(
-                              color: Colors.orange.shade300,
-
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Colors.orange.shade300,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     )),
                 Padding(
@@ -89,28 +89,17 @@ class EditEmailFormPageState extends State<EditEmailFormPage> {
                     padding: const EdgeInsets.only(top: 150),
                     child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: SizedBox(
+                        child: GlobalButton(
+                          onTap: () {
+                            if (_formKey.currentState!.validate() &&
+                                EmailValidator.validate(emailController.text)) {
+                              updateUserValue(emailController.text);
+                              Navigator.pop(context);
+                            }
+                          },
                           width: 320,
                           height: 50,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shadowColor: const Color(0xFF1A434E),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                backgroundColor: Colors.orange),
-                            onPressed: () {
-                              // Validate returns true if the form is valid, or false otherwise.
-                              if (_formKey.currentState!.validate() &&
-                                  EmailValidator.validate(
-                                      emailController.text)) {
-                                updateUserValue(emailController.text);
-                                Navigator.pop(context);
-                              }
-                            },
-                            child: const Text(
-                              'Update',
-                              style: TextStyle(fontSize: 15, color: Colors.white),
-                            ),
-                          ),
+                          buttonTitle: 'Update',
                         )))
               ]),
         ));
