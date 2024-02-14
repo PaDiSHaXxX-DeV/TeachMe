@@ -60,7 +60,7 @@ class InfoPage extends StatelessWidget {
             ),
             const Divider(
               indent: 20,
-              color: Colors.grey,
+              color: Colors.orange,
               endIndent: 20,
             ),
             Text(
@@ -72,7 +72,7 @@ class InfoPage extends StatelessWidget {
             ),
             const Divider(
               indent: 23,
-              color: Colors.grey,
+              color: Colors.orange,
               endIndent: 23,
             ),
             Text(
@@ -84,7 +84,7 @@ class InfoPage extends StatelessWidget {
             ),
             const Divider(
               indent: 26,
-              color: Colors.grey,
+              color: Colors.orange,
               endIndent: 26,
             ),
             Text(
@@ -96,7 +96,7 @@ class InfoPage extends StatelessWidget {
             ),
             const Divider(
               indent: 30,
-              color: Colors.grey,
+              color: Colors.orange,
               endIndent: 30,
             ),
             Text(

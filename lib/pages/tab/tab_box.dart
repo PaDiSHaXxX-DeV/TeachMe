@@ -4,6 +4,7 @@ import 'package:teachme/blocs/bottom_nav_cubit/bottom_nav_cubit.dart';
 import 'package:teachme/pages/favorite.dart';
 import 'package:teachme/pages/home.dart';
 import 'package:teachme/pages/news_page.dart';
+import 'package:teachme/pages/profile/pages/profile_page.dart';
 import 'package:teachme/pages/search_page.dart';
 import 'package:teachme/pages/student.dart';
 
@@ -25,7 +26,7 @@ class _TabBoxState extends State<TabBox> {
       const FavoritePage(),
 
       const SearchPage(),
-      const StudentPage(),
+       ProfilePage(),
 
     ];
 
