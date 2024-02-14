@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:teachme/pages/auth/sing_up.dart';
-import 'package:teachme/pages/home.dart';
 import 'package:teachme/pages/tab/tab_box.dart';
 
 class Login extends StatefulWidget {
@@ -60,25 +59,20 @@ class _LoginState extends State<Login> {
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   labelText: "Username",
-                  labelStyle: const TextStyle(
-                      color: Colors.white), // Set label color to white
-                  prefixIcon: const Icon(Icons.person_outline,
-                      color: Colors.white), // Set prefix icon color to white
+                  labelStyle: const TextStyle(color: Colors.white),
+                  prefixIcon:
+                      const Icon(Icons.person_outline, color: Colors.white),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Colors.white), // Set border color to white
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color:
-                            Colors.white), // Set enabled border color to white
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style:
-                    const TextStyle(color: Colors.white), // Set text color to white
-                cursorColor: Colors.white, // Set cursor color to white
+                style: const TextStyle(color: Colors.white),
+                cursorColor: Colors.white,
                 onEditingComplete: () => _focusNodePassword.requestFocus(),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -98,10 +92,9 @@ class _LoginState extends State<Login> {
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
                   labelText: "Password",
-                  labelStyle: const TextStyle(
-                      color: Colors.white), // Set label color to white
-                  prefixIcon: const Icon(Icons.password_outlined,
-                      color: Colors.white), // Set prefix icon color to white
+                  labelStyle: const TextStyle(color: Colors.white),
+                  prefixIcon:
+                      const Icon(Icons.password_outlined, color: Colors.white),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -110,25 +103,21 @@ class _LoginState extends State<Login> {
                     },
                     icon: _obscurePassword
                         ? const Icon(Icons.visibility_outlined,
-                            color:
-                                Colors.white) // Set suffix icon color to white
+                            color: Colors.white)
                         : const Icon(Icons.visibility_off_outlined,
                             color: Colors.white),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color: Colors.white), // Set border color to white
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                        color:
-                            Colors.white), // Set enabled border color to white
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                 ),
-                style:
-                    const TextStyle(color: Colors.white), // Set text color to white
+                style: const TextStyle(
+                    color: Colors.white), // Set text color to white
                 cursorColor: Colors.white, // Set cursor color to white
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -174,10 +163,9 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     const Text(
+                      const Text(
                         "Don't have an account?",
                         style: TextStyle(color: Colors.white),
-
                       ),
                       TextButton(
                         onPressed: () {

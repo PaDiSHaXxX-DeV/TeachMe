@@ -58,7 +58,7 @@ class FavoritePage extends StatelessWidget {
               child: Text(state.statusText),
             );
           }else{
-            return Center(
+            return const Center(
               child: Text("state.statusText"),
             );
           }

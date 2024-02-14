@@ -37,15 +37,10 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
 
       await box.add(event.study);
 
-      // if (event.study != StudyModel) {
-      //   emit(state.copyWith(status: FormStatus.error, statusText: "Invalid data type."));
-      //   return;
-      // }
-
       emit(state.copyWith(
           status: FormStatus.success, statusText: "Data added successfully!"));
 
-      add(GetAllFavoritesEvent()); // Assuming this triggers fetching all favorites
+      add(GetAllFavoritesEvent());
     } catch (error) {
       emit(state.copyWith(
           status: FormStatus.error, statusText: "Error: $error"));

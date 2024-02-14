@@ -10,36 +10,35 @@ class StudyModel {
   final String major;
   final String rating;
   final String number;
-   bool isFavorite=false;
+  bool isFavorite = false;
 
-
-  StudyModel(
-      {required this.image,
-      required this.fullName,
-        required this.isFavorite,
-      required this.description,
-      required this.location,
-      required this.major,
-      required this.rating,
-      required this.number, });
+  StudyModel({
+    required this.image,
+    required this.fullName,
+    required this.isFavorite,
+    required this.description,
+    required this.location,
+    required this.major,
+    required this.rating,
+    required this.number,
+  });
 
   StudyModel copyWith({
-
     String? fullName,
     String? description,
     String? image,
-    String? price,
+    String? major,
     String? rating,
-    String? type,
+    String? location,
     String? number,
-    bool ? isFavorite,
+    bool? isFavorite,
   }) =>
       StudyModel(
         image: image ?? this.image,
         fullName: fullName ?? this.fullName,
         description: description ?? this.description,
-        location: type ?? this.location,
-        major: price ?? this.major,
+        location: location ?? this.location,
+        major: major ?? this.major,
         rating: rating ?? this.rating,
         number: number ?? this.number,
         isFavorite: isFavorite ?? this.isFavorite,
@@ -48,12 +47,12 @@ class StudyModel {
   factory StudyModel.fromJson(Map<String, dynamic> json) => StudyModel(
         image: json['image'] as String? ?? '',
         fullName: json['fullName'] as String? ?? '',
-    description: json['description'] as String? ?? '',
+        description: json['description'] as String? ?? '',
         location: json['location'] as String? ?? '',
         major: json['major'] as String? ?? '',
         rating: json['rating'] as String? ?? '',
         number: json['number'] as String? ?? '',
-    isFavorite: json['isFavorite'] as bool? ?? false,
+        isFavorite: json['isFavorite'] as bool? ?? false,
       );
 
   @override

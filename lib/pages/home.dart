@@ -103,6 +103,7 @@ class _HomePageState extends State<HomePage> {
               if (state.status == FormStatus.success) {
                 return InkWell(
                   onTap: () {
+                    context.read<FavoriteBloc>().add(GetAllFavoritesEvent());
 
                     if (state.studys.contains(data)) {
                       context
@@ -117,10 +118,10 @@ class _HomePageState extends State<HomePage> {
                   child: SizedBox(
                     child: Icon(
                       state.studys.contains(data)
-                          ? Icons.favorite_border_rounded
-                          : Icons.favorite,
+                          ? Icons.favorite
+                          : Icons.favorite_border_rounded,
                       color:
-                          state.studys.contains(data) ? Colors.white : Colors.red,
+                          state.studys.contains(data) ? Colors.red : Colors.white,
                     ),
                   ),
                 );
