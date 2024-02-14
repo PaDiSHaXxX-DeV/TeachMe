@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     if (_boxLogin.get("loginStatus") ?? false) {
-      return TabBox();
+      return const TabBox();
     }
 
     return Scaffold(
@@ -57,21 +57,27 @@ class _LoginState extends State<Login> {
               TextFormField(
                 controller: _controllerUsername,
                 keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  labelText: "Username",
-                  labelStyle: const TextStyle(color: Colors.white),
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: const InputDecoration(
+                  labelStyle: TextStyle(color: Colors.white),
+                  labelText: 'Username',
                   prefixIcon:
-                      const Icon(Icons.person_outline, color: Colors.white),
+                   Icon(Icons.person_outline, color: Colors.white),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.white),
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.white),
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
+                  disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
                   ),
                 ),
-                style: const TextStyle(color: Colors.white),
                 cursorColor: Colors.white,
                 onEditingComplete: () => _focusNodePassword.requestFocus(),
                 validator: (String? value) {
@@ -90,11 +96,14 @@ class _LoginState extends State<Login> {
                 focusNode: _focusNodePassword,
                 obscureText: _obscurePassword,
                 keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(
-                  labelText: "Password",
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+                decoration:  InputDecoration(
                   labelStyle: const TextStyle(color: Colors.white),
+                  labelText: 'Password',
                   prefixIcon:
-                      const Icon(Icons.password_outlined, color: Colors.white),
+                   const Icon(Icons.password_outlined, color: Colors.white),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -103,21 +112,23 @@ class _LoginState extends State<Login> {
                     },
                     icon: _obscurePassword
                         ? const Icon(Icons.visibility_outlined,
-                            color: Colors.white)
+                        color: Colors.white)
                         : const Icon(Icons.visibility_off_outlined,
-                            color: Colors.white),
+                        color: Colors.white),
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.white),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.white),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
                   ),
-                ),
-                style: const TextStyle(
-                    color: Colors.white), // Set text color to white
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
+                  disabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
+                ), // Set text color to white
                 cursorColor: Colors.white, // Set cursor color to white
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -134,7 +145,8 @@ class _LoginState extends State<Login> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
+                      shadowColor: const Color(0xFF1A434E),
+                      backgroundColor: Colors.orange,
                       minimumSize: const Size.fromHeight(50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -149,7 +161,7 @@ class _LoginState extends State<Login> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return TabBox();
+                              return const TabBox();
                             },
                           ),
                         );

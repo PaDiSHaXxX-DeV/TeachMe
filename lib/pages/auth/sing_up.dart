@@ -59,13 +59,22 @@ class _SignupState extends State<Signup> {
                       const Icon(Icons.person_outline, color: Colors.white),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.amber),
                   ),
-                  labelStyle: TextStyle(color: Colors.white),
+                  disabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
+                  labelStyle: const TextStyle(color: Colors.white),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter username.";
@@ -86,13 +95,22 @@ class _SignupState extends State<Signup> {
                   prefixIcon: const Icon(Icons.phone, color: Colors.white),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.amber),
                   ),
-                  labelStyle: TextStyle(color: Colors.white),
+                  disabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
+                  labelStyle: const TextStyle(color: Colors.white),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter phone number.";
@@ -109,8 +127,12 @@ class _SignupState extends State<Signup> {
                 obscureText: _obscurePassword,
                 focusNode: _focusNodePassword,
                 keyboardType: TextInputType.visiblePassword,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
                 decoration: InputDecoration(
-                  labelText: "Password",
+                  labelStyle: const TextStyle(color: Colors.white),
+                  labelText: 'Password',
                   prefixIcon:
                       const Icon(Icons.password_outlined, color: Colors.white),
                   suffixIcon: IconButton(
@@ -126,13 +148,20 @@ class _SignupState extends State<Signup> {
                               color: Colors.white)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.amber),
                   ),
-                  labelStyle: TextStyle(color: Colors.white),
+                  disabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
                 ),
-                style: TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter password.";
@@ -150,8 +179,12 @@ class _SignupState extends State<Signup> {
                 obscureText: _obscurePassword,
                 focusNode: _focusNodeConfirmPassword,
                 keyboardType: TextInputType.visiblePassword,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
                 decoration: InputDecoration(
-                  labelText: "Confirm Password",
+                  labelStyle: const TextStyle(color: Colors.white),
+                  labelText: 'Confirim Password',
                   prefixIcon:
                       const Icon(Icons.password_outlined, color: Colors.white),
                   suffixIcon: IconButton(
@@ -167,13 +200,20 @@ class _SignupState extends State<Signup> {
                               color: Colors.white)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.white),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.amber),
                   ),
-                  labelStyle: TextStyle(color: Colors.white),
+                  disabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
                 ),
-                style: TextStyle(color: Colors.white),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter password.";
@@ -188,7 +228,8 @@ class _SignupState extends State<Signup> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
+                      shadowColor: const Color(0xFF1A434E),
+                      backgroundColor: Colors.orange,
                       minimumSize: const Size.fromHeight(50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -204,8 +245,7 @@ class _SignupState extends State<Signup> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             width: 200,
-                            backgroundColor:
-                                Colors.white,
+                            backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
