@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
-import 'package:teachme/pages/profile/user/user_data.dart';
+import 'package:teachme/data/models/user/user_data.dart';
 import 'package:teachme/pages/profile/widgets/appbar_widget.dart';
 
 class EditNameFormPage extends StatefulWidget {

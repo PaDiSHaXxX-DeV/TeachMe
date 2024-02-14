@@ -6,7 +6,7 @@ import 'package:teachme/data/fake_data.dart';
 import 'package:teachme/data/models/form_status.dart';
 import 'package:teachme/data/models/study_model.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
-import 'package:teachme/pages/info_page.dart';
+import 'package:teachme/pages/info/info_page.dart';
 
 class HomePage extends StatefulWidget {
   @override

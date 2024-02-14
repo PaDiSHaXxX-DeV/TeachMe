@@ -1,12 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teachme/blocs/bottom_nav_cubit/bottom_nav_cubit.dart';
-import 'package:teachme/pages/favorite.dart';
-import 'package:teachme/pages/home.dart';
-import 'package:teachme/pages/news_page.dart';
+import 'package:teachme/pages/favorite/favorite.dart';
+import 'package:teachme/pages/home/home.dart';
+import 'package:teachme/pages/news/news_page.dart';
 import 'package:teachme/pages/profile/pages/profile_page.dart';
-import 'package:teachme/pages/search_page.dart';
-import 'package:teachme/pages/student.dart';
+import 'package:teachme/pages/search/search_page.dart';
 
 class TabBox extends StatefulWidget {
   const TabBox({super.key});
@@ -46,7 +47,7 @@ class _TabBoxState extends State<TabBox> {
         ),
         bottomNavigationBar: Container(
           width: size.width,
-          height: 80,
+          height:Platform.isIOS? 80:60,
           child: Stack(
             children: [
               CustomPaint(
@@ -67,7 +68,7 @@ class _TabBoxState extends State<TabBox> {
               ),
               Container(
                 width: size.width,
-                height: 80,
+                height: 75,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

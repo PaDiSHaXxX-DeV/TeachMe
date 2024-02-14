@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teachme/blocs/favorite_bloc/favorite_bloc.dart';
 import 'package:teachme/data/models/form_status.dart';
-import 'package:teachme/pages/info_page.dart';
+import 'package:teachme/pages/info/info_page.dart';
 
-import '../data/models/study_model.dart';
+import '../../data/models/study_model.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});

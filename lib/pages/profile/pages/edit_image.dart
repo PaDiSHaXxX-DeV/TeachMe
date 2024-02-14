@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:teachme/pages/profile/user/user_data.dart';
+import 'package:teachme/data/models/user/user_data.dart';
 import 'package:teachme/pages/profile/widgets/appbar_widget.dart';
 
 class EditImagePage extends StatefulWidget {
@@ -44,7 +44,7 @@ class _EditImagePageState extends State<EditImagePage> {
                   child: GestureDetector(
                     onTap: () async {
                       final image = await ImagePicker()
-                          .pickImage(source: ImageSource.gallery);
+                          .pickImage(source: ImageSource.camera);
 
                       if (image == null) return;
 

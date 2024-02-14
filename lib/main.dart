@@ -21,11 +21,14 @@ void main() async {
   } else {
     print('// Camera permission is denied');
   }
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor: Colors.transparent,
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
-  ));
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
   Hive.registerAdapter(StudyModelAdapter());
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => TabCubit()),
