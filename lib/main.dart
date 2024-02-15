@@ -5,8 +5,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:teachme/blocs/bottom_nav_cubit/bottom_nav_cubit.dart';
 import 'package:teachme/blocs/favorite_bloc/favorite_bloc.dart';
+import 'package:teachme/blocs/news_bloc/news_bloc.dart';
 import 'package:teachme/data/models/study_model.dart';
+import 'package:teachme/data/repository/news_repo.dart';
 import 'package:teachme/pages/auth/sign_in.dart';
+import 'package:teachme/services/api_service/api_service.dart';
 
 void main() async {
   await _initHive();
@@ -33,6 +36,9 @@ void main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => TabCubit()),
     BlocProvider(create: (context) => FavoriteBloc()),
+    BlocProvider(
+        create: (context) =>
+            NewsBloc(repository: NewsRepository(apiService: ApiService()))),
   ], child: const MyApp()));
 }
 

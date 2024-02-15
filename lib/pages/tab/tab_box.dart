@@ -25,10 +25,8 @@ class _TabBoxState extends State<TabBox> {
       HomePage(),
       const NewsPage(),
       const FavoritePage(),
-
-      const SearchPage(),
-       ProfilePage(),
-
+      SearchPage(),
+      ProfilePage(),
     ];
 
     super.initState();
@@ -47,7 +45,7 @@ class _TabBoxState extends State<TabBox> {
         ),
         bottomNavigationBar: Container(
           width: size.width,
-          height:Platform.isIOS? 80:60,
+          height: Platform.isIOS ? 80 : 60,
           child: Stack(
             children: [
               CustomPaint(

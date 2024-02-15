@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:teachme/data/models/user/user_data.dart';
 import 'package:teachme/pages/profile/pages/edit_description.dart';
 import 'package:teachme/pages/profile/widgets/appbar_widget.dart';
-import 'package:teachme/widgets/Global_button.dart';
+import 'package:teachme/widgets/global_button.dart';
 
 // This class handles the Page to edit the Email Section of the User Profile.
 class EditEmailFormPage extends StatefulWidget {

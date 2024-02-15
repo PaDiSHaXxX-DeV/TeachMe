@@ -8,7 +8,7 @@ class FakeDate {
         description:
             'EDX Open Online Courses are beneficial to society by providing access to quality courses at very  affordable fees see more..',
         location: "location",
-        major: "Low",
+        major: "English",
         rating: '5',
         number: "+998991234567",
         isFavorite: false),
@@ -19,7 +19,7 @@ class FakeDate {
         description:
             'EDX Open Online Courses are beneficial to society by providing access to quality courses at very  affordable fees see more..',
         location: "location",
-        major: "Low",
+        major: "English",
         rating: '5',
         number: "+998991234567"),
     StudyModel(
@@ -29,7 +29,7 @@ class FakeDate {
         description:
             'EDX Open Online Courses are beneficial to society by providing access to quality courses at very  affordable fees see more..',
         location: "location",
-        major: "Low",
+        major: "IT learn centr",
         rating: '5',
         number: "+998991234567"),
     StudyModel(
@@ -39,7 +39,7 @@ class FakeDate {
             'EDX Open Online Courses are beneficial to society by providing access to quality courses at very  affordable fees see more..',
         fullName: 'Proweb IT centre',
         location: "location",
-        major: "Low",
+        major: "IT learn centre",
         rating: '5',
         number: "+998991234567"),
     StudyModel(
@@ -49,8 +49,9 @@ class FakeDate {
             'EDX Open Online Courses are beneficial to society by providing access to quality courses at very  affordable fees see more..',
         fullName: 'Registon o`quv markazi',
         location: "location",
-        major: "Low",
+        major: "School Internat",
         rating: '5',
         number: "+998991234567"),
   ];
+  // apiKeyNews='fcfbd7f01f22482ba467c47dd84a3a85'
 }
