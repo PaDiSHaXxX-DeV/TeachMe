@@ -45,7 +45,7 @@ class ApiService {
     Response response;
     try {
       response = await _dio.get(
-          "/top-headlines?sources=techcrunch&apiKey=fcfbd7f01f22482ba467c47dd84a3a85");
+          "/top-headlines?country=us&category=business&apiKey=fcfbd7f01f22482ba467c47dd84a3a85");
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
         print("object  Articles");
         return UniversalData(
