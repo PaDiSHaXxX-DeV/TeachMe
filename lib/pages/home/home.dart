@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Box _boxLogin = Hive.box("login");
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +22,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A434E),
-        leading: IconButton(
-          color: Colors.white,
-          onPressed: () {
-            _boxLogin.clear();
-            _boxLogin.put("loginStatus", false);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const Login();
-                },
-              ),
-            );
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
         title: const Text(
           "Home Page",
           style: TextStyle(color: Colors.white),
@@ -61,8 +44,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-
   @override
   void initState() {
     context.read<FavoriteBloc>().add(GetAllFavoritesEvent());
@@ -70,5 +51,3 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 }
-
-

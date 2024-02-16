@@ -16,11 +16,7 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A434E),
-        leading: IconButton(
-          color: Colors.white,
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
+
         title: const Text(
           "Favorite Page",
           style: TextStyle(color: Colors.white),

@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:teachme/data/models/user/user.dart';
 import 'package:teachme/data/models/user/user_data.dart';
+import 'package:teachme/pages/auth/sign_in.dart';
 import 'package:teachme/pages/profile/pages/edit_description.dart';
 import 'package:teachme/pages/profile/pages/edit_email.dart';
 import 'package:teachme/pages/profile/pages/edit_image.dart';
@@ -19,19 +21,38 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final Box _boxLogin = Hive.box("login");
+
   @override
   Widget build(BuildContext context) {
     final user = UserData.myUser;
 
     return Scaffold(
       backgroundColor: const Color(0xFF1A434E),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            color: Colors.white,
+            onPressed: () {
+              _boxLogin.clear();
+              _boxLogin.put("loginStatus", false);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const Login();
+                  },
+                ),
+              );
+            },
+            icon: const Icon(Icons.logout_outlined),
+          ),
+        ],
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 35,
+      ),
       body: Column(
         children: [
-          AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            toolbarHeight: 10,
-          ),
           const Center(
               child: Padding(
                   padding: EdgeInsets.only(bottom: 20),
